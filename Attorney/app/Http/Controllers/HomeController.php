@@ -10,6 +10,7 @@ class HomeController extends Controller
     }
 
     public function homes(){
+        echo '124';
         return view('Home.homes');
     }
 

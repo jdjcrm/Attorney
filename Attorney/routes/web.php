@@ -11,6 +11,12 @@
 |
 */
 
+
+
+//项目后台
+Route::any('admin/login','Admin\LoginController@login');
+Route::any('admin/check','Admin\LoginController@check');
+
 Route::get('/', function () {
     return view('Home.home');
 });
