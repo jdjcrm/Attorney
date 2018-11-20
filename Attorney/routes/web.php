@@ -11,16 +11,25 @@
 |
 */
 
-
+Route::get('/','HomeController@top');
+//Route::get('top', 'HomeController@top');
 
 //项目后台
-Route::any('admin/login','Admin\LoginController@login');
-Route::any('admin/check','Admin\LoginController@check');
+Route::any('admin/login', 'Admin\LoginController@login');
+Route::any('admin/check', 'Admin\LoginController@check');
 
-Route::get('/', function () {
-    return view('Home.home');
-});
 
-//Route::any('Login_do','LoginController@login_do');
-Route::any('homes','HomeController@homes');
+
+//Route::any('Login_topdo','LoginController@login_do');
+Route::get('home', 'HomeController@home');
+
+Route::any('homes', 'HomeController@homes');
+Route::any('add', 'HomeController@add');
+Route::any('add_do', 'HomeController@add_do');
+
+#个人中心
+Route::any('centre', 'HomeController@centre');
+
+#律师投稿
+Route::any('contribute','ContributeController@contribute');
 
