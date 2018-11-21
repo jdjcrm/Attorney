@@ -27,11 +27,11 @@
 
 <div class="page-container">
     <h1>法律后台系统</h1>
-    <form action="admin_check" method="post">
-        {{csrf_field()}}
+    <form action="javascript:;" method="post">
+
         <input type="text" name="username" class="username" placeholder="Username">
         <input type="password" name="password" class="password" placeholder="Password">
-        <input type="submit">登录</input>
+        <button type="button" id="login">登录</button>
         <div class="error"><span>+</span></div>
     </form>
     <div class="connect">
@@ -48,8 +48,40 @@
 <script src="/admin/assets/js/supersized.3.2.7.min.js"></script>
 <script src="/admin/assets/js/supersized-init.js"></script>
 <script src="/admin/assets/js/scripts.js"></script>
-
+<script src="/admin/Layui/layui.js"></script>
 </body>
+<script>
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    });
+    $('#login').click(function(){
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        $.ajax({
+            url:'{{url('admin/check')}}',
+            data:{
+                'password':password,
+                'username':username,
+                _token:'{{csrf_token()}}'
+            },
+            dataType:'json',
+            type:'post',
+            async:false,
+            success:function(json_msg){
 
+                if(json_msg.code==1000){
+
+                    layui.layer.msg(json_msg.font,{icon:6});
+                    setTimeout(function (){
+                        window.location.href="{{url('admin/index')}}";
+                    },1000)
+
+                }else{
+                    layui.layer.msg(json_msg.font,{icon:5});
+                }
+            }
+        })
+    })
+</script>
 </html>
 
