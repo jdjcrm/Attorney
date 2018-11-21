@@ -66,17 +66,12 @@
     </div>
 
     <div style="width:100px;height:600px;;">
-        <textarea id="demo" style="display: none;"></textarea>
+        <textarea name="" id="tex" cols="40" rows="10"></textarea>
+        <input type="button" value="投稿" style="width:100%;height:30px;" id="box1">
+        <input type="button" value="电脑输入" style="width:100%;height:30px;" id="box2">
     </div>
-    <script>
-        $(function(){
-            layui.use('layedit', function(){
-                var layedit = layui.layedit;
-                layedit.build('demo'); //建立编辑器
-            });
-        })
 
-    </script>
+
     <div id="footer" class="black_gradient">
         <a href="index.html" class="back_button black_button">首页</a>
         <div class="page_title">小贾项目</div>
@@ -89,3 +84,35 @@
 
 </body>
 </html>
+<script>
+    $(function(){
+        layui.use('layer', function(){
+            var layer = layui.layer;
+
+            $('#box1').click(function(){
+                var tex=$('#tex').val();
+                if(tex == ''){
+                    layer.msg('不能为空',{icon:2});
+                    return false;
+                }
+
+                $.ajax({
+                    url:"buteAdd",
+                    data:{'tex':tex,'_token':'{{csrf_token()}}'},
+                    type:'post',
+                    success: function(json_msg){
+                        if(json_msg['status'] == 1){
+                            layer.msg(json_msg['font'],{icon:json_msg['code']});
+                        }else{
+                            layer.msg(json_msg['font'],{icon:json_msg['code']});
+                        }
+                    }
+                });
+            });
+            $('#box2').click(function(){
+                alert("http://dongjie.zengjie.shop/computer");
+            });
+        });
+
+    })
+</script>

@@ -32,4 +32,10 @@ Route::any('centre', 'HomeController@centre');
 
 #律师投稿
 Route::any('contribute','ContributeController@contribute');
+Route::any('buteAdd','ContributeController@bute_add');
+Route::any('computer','ContributeController@computer');
+Route::any('select','ContributeController@select');
+Route::any('computer_text','ContributeController@computer_text');
+Route::any('computer_add','ContributeController@computer_add');
+Route::any('quit','ContributeController@quit');
 
