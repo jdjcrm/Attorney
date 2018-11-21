@@ -17,7 +17,21 @@ Route::get('/','HomeController@top');
 //项目后台
 Route::any('admin/login', 'Admin\LoginController@login');
 Route::any('admin/check', 'Admin\LoginController@check');
+Route::group(['namespace'=>'Admin'],function(){
+    Route::any('admin/index','IndexController@index');
+    Route::any('admin/quit','LoginController@quit');
+    Route::any('comment/index','CommentController@index');
+    Route::any('comment/check','CommentController@check');
+    Route::any('comment/del','CommentController@del');
+    //法律模块
+    Route::any('law/add_class','LawController@add_class');
+    Route::any('law/index','LawController@index');//添加法律文章
 
+
+    Route::any('law/upload','LawController@upload');//上传图片
+
+
+});
 
 
 //Route::any('Login_topdo','LoginController@login_do');
