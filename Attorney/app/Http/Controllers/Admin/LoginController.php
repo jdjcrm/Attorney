@@ -28,7 +28,7 @@ class LoginController extends Controller
             return json_encode(['code'=>2,'font'=>'该用户不存在']);
         }
         //判断密码是否正确
-        if(md5($password)==$admin_info->admin_pass){
+        if(md5($password)!=$admin_info->admin_pass){
             return json_encode(['code'=>2,'font'=>'密码输入有误']);
         }
         //登陆成功

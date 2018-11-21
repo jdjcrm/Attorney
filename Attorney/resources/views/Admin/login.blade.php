@@ -12,9 +12,9 @@
 
     <!-- CSS -->
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
-    <link rel="stylesheet" href="/admin/assets/css/reset.css">
-    <link rel="stylesheet" href="/admin/assets/css/supersized.css">
-    <link rel="stylesheet" href="/admin/assets/css/style.css">
+    <link rel="stylesheet" href="{{URL::asset('/admin/assets/css/reset.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('/admin/assets/css/supersized.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('/admin/assets/css/style.css')}}">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -44,11 +44,11 @@
 </div>
 
 <!-- Javascript -->
-<script src="/admin/assets/js/jquery-1.8.2.min.js"></script>
-<script src="/admin/assets/js/supersized.3.2.7.min.js"></script>
-<script src="/admin/assets/js/supersized-init.js"></script>
-<script src="/admin/assets/js/scripts.js"></script>
-<script src="/admin/Layui/layui.js"></script>
+<script src="{{URL::asset('/admin/assets/js/jquery-1.8.2.min.js')}}"></script>
+<script src="{{URL::asset('/admin/assets/js/supersized.3.2.7.min.js')}}"></script>
+<script src="{{URL::asset('/admin/assets/js/supersized-init.js')}}"></script>
+<script src="{{URL::asset('/admin/assets/js/scripts.js')}}"></script>
+<script src="{{URL::asset('/layui/layui.js')}}"></script>
 </body>
 <script>
     layui.use('layer', function(){
