@@ -70,7 +70,15 @@
 <div class="content">
 <a href="{{$img}}"  rel="prettyPhoto[gallery]"><img src="{{$img}}"  alt="" style="width:100%" title="" border="0" class="rounded" /></a>
 
-<h2>昵称：<span class="tag">{{$name}}</span></h2>
+<h2>昵称：<span class="tag">{{$name}}</span>
+    @if($integral >= 10 && $integral <20)
+        铜牌
+    @elseif($integral >=20 && $integral <30)
+        银牌
+    @elseif($integral >=30)
+        金牌
+    @endif
+</h2>
 
 <ul class="lists">
 <li>{{$sign}}</li>
@@ -79,22 +87,72 @@
 
 
 <h2><span class="tag">我的勋章</span></h2>
+@if($integral >= 10 && $integral <20)
+        <ul id="tabsmenu" class="tabsmenu">
+            <li class="active"><a href="#tab1">铜</a></li>
+            <li><a href="#tab2">银</a></li>
+            <li><a href="#tab3">金</a></li>
+        </ul>
+        <div id="tab1" class="tabcontent">
+            <h3><span style="color:green">您已经是铜牌了</span></h3>
+        </div>
+        <div id="tab2" class="tabcontent">
+            <h3><span style="color:red">您还没有消费够，快去消费吧</span></h3>
+        </div>
 
-<ul id="tabsmenu" class="tabsmenu">
-<li class="active"><a href="#tab1">铜</a></li>
-<li><a href="#tab2">银</a></li>
-<li><a href="#tab3">金</a></li>
-</ul>
-<div id="tab1" class="tabcontent">
-<h3>你还没有消费够</h3>
-</div>
-<div id="tab2" class="tabcontent">
-<h3>你还没有消费够</h3>
-</div>
+        <div id="tab3" class="tabcontent">
+            <h3><span style="color:red">您还没有消费够，快去消费吧</span></h3>
+        </div>
+@elseif($integral >=20 && $integral <30)
+        <ul id="tabsmenu" class="tabsmenu">
+            <li class="active"><a href="#tab1">铜</a></li>
+            <li><a href="#tab2">银</a></li>
+            <li><a href="#tab3">金</a></li>
+        </ul>
+        <div id="tab1" class="tabcontent">
+            <h3><span style="color:green">您现在已经是银牌了</span></h3>
+        </div>
+        <div id="tab2" class="tabcontent">
+            <h3><span style="color:green">您已经是银牌了</span></h3>
+        </div>
 
-<div id="tab3" class="tabcontent">
-<h3>你还没有消费够</h3>
-</div>
+        <div id="tab3" class="tabcontent">
+            <h3><span style="color:red">您还没有消费够，快去消费吧</span></h3>
+        </div>
+@elseif($integral >=30)
+        <ul id="tabsmenu" class="tabsmenu">
+            <li class="active"><a href="#tab1">铜</a></li>
+            <li><a href="#tab2">银</a></li>
+            <li><a href="#tab3">金</a></li>
+        </ul>
+        <div id="tab1" class="tabcontent">
+            <h3><span style="color:green">您已经是金牌了</span></h3>
+        </div>
+        <div id="tab2" class="tabcontent">
+            <h3><span style="color:green">您已经是金牌了</span></h3>
+        </div>
+
+        <div id="tab3" class="tabcontent">
+            <h3><span style="color:green">您已经是金牌了</span></h3>
+        </div>
+@elseif($integral <10)
+        <ul id="tabsmenu" class="tabsmenu">
+            <li class="active"><a href="#tab1">铜</a></li>
+            <li><a href="#tab2">银</a></li>
+            <li><a href="#tab3">金</a></li>
+        </ul>
+        <div id="tab1" class="tabcontent">
+            <h3><span style="color:red">您还没有消费够，快去消费吧</span></h3>
+        </div>
+        <div id="tab2" class="tabcontent">
+            <h3><span style="color:red">您还没有消费够，快去消费吧</span></h3>
+        </div>
+
+        <div id="tab3" class="tabcontent">
+            <h3><span style="color:red">您还没有消费够，快去消费吧</span></h3>
+        </div>
+@endif
+
 
 
 <div class="clear"></div>

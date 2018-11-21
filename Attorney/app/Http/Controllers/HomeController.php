@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Model\User;
 use App\Model\Msg;
+use App\Model\Integral;
 class HomeController extends Controller
 {
     public function top(Request $request){
@@ -34,7 +35,7 @@ class HomeController extends Controller
             }
             return redirect('home');
         }else{
-            return redirect('home');
+            echo'PC 端现在还没有开发';
         }
     }
     #登录首页
@@ -47,6 +48,19 @@ class HomeController extends Controller
         ];
         $res=$user_obj -> getGet($where);
         if($res){
+            #积分
+            $obj = new Integral();
+            $time = time();
+            $add=[];
+            $arr = $obj -> inte_First();
+            foreach($arr as $k=>$v){
+
+                if($time - $v['ctime'] >(60 * 60 * 24 * 7)){
+                   $add[]= $v['id'];
+                }
+            }
+            $obj ->inte_updata($add);
+
             return view('Home.home');
         }else{
             return view('Home.add');
@@ -182,6 +196,23 @@ class HomeController extends Controller
         $user_model = new User();
         $add= $user_model ->add($insert);
         if($add){
+            #添加积分表
+            $user_model  =  new User();
+            $openid = session('openid');
+            $where = [
+                'openid'=>$openid,
+                'status'=>1
+            ];
+            $arr = $user_model -> getGet($where);
+
+            foreach($arr as $k=>$v){
+                $u_id = $v['u_id'];
+            }
+            $app['u_id']=$u_id;
+            $app['ctime']=time();
+            $app['integral']=0;
+            $Integ_model = new Integral();
+            $Integ_model ->inte_add($app);
             echo '注册成功';
             header("refresh:1,url='/'");
         }else{
@@ -204,8 +235,16 @@ class HomeController extends Controller
         foreach($arr as $k=>$v){
             $add=$v;
         }
-
-        return view('Home.centre',['name'=>$name,'img'=>$img,'sign'=>$add['signature']]);
+        $u_id = $add['u_id'];
+        $where = [
+            'u_id'=>$u_id
+        ];
+        $inte_model = new Integral();
+        $data=$inte_model ->getfind($where);
+        foreach($data as $k=>$v){
+            $app = $v;
+        }
+        return view('Home.centre',['name'=>$name,'img'=>$img,'sign'=>$add['signature'],'integral'=>$app['integral']]);
     }
     public function homes(){
         return view('Home.homes');
