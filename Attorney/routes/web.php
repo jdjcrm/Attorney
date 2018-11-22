@@ -56,3 +56,9 @@ Route::any('computer_text','ContributeController@computer_text');
 Route::any('computer_add','ContributeController@computer_add');
 Route::any('quit','ContributeController@quit');
 
+
+//法律常识
+Route::any('legal_index','LegalController@index');
+Route::any('legal_list','LegalController@legal_list');
+Route::any('legal_content','LegalController@legal_content');
+
