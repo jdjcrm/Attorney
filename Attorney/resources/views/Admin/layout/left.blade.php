@@ -29,7 +29,12 @@
 
                 </dl>
             </li>
-
+            <li class="layui-nav-item">
+                <a href="javascript:;">律师投稿</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{{url('law/contribute')}}">审核投稿</a></dd>
+                </dl>
+            </li>
         </ul>
     </div>
 </div>

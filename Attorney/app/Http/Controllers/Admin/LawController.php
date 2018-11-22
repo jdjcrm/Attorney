@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use App\Model\User;
 class LawController extends Controller
 {
 
@@ -130,4 +130,52 @@ class LawController extends Controller
     }
 
 
+    #审批投稿
+    public function updata_contribute(){
+        $arr = DB::table('att_contribute')->where('status',1)->get()->toArray();
+            $str = [];
+        foreach($arr as $k=>$v){
+                $str[]=$v->u_id;
+        }
+        $where=array_unique($str);
+//        print_r($str);exit;
+        $data = DB::table('att_user')
+            ->whereIn('u_id', $where)
+            ->get()->toArray();
+            foreach($arr as $k=>$v){
+                $v->ctime = date('Y-m-d H:i:s',$v->ctime);
+                foreach($data as $key=>$val){
+                    if($v->u_id == $val->u_id){
+                        $v->u_id = $val->true_name;
+                    }
+                }
+            }
+        return view('Admin.contribute',['arr'=>$arr]);
+    }
+
+    #通过投稿
+    public function contribute_yes(Request $request){
+        $id = $request -> input('id');
+        $res=DB::table('att_contribute')
+            ->where('con_id', $id)
+            ->update(['status' => 2]);
+        if($res){
+            return ['font'=>'通过成功',['code'=>1]];
+        }else{
+            return ['font'=>'通过失败',['code'=>2]];
+        }
+    }
+
+    #驳回投稿
+    public function contribute_no(Request $request){
+        $id = $request -> input('id');
+        $res=DB::table('att_contribute')
+            ->where('con_id', $id)
+            ->update(['status' => 3]);
+        if($res){
+            return ['font'=>'驳回成功',['code'=>1]];
+        }else{
+            return ['font'=>'驳回失败',['code'=>2]];
+        }
+    }
 }

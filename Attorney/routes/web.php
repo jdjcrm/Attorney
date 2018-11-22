@@ -27,6 +27,9 @@ Route::group(['namespace'=>'Admin'],function(){
     Route::any('law/add_class','LawController@add_class');
     Route::any('law/index','LawController@index');//添加法律文章
 
+    Route::any('law/contribute','LawController@updata_contribute');#审批投稿
+    Route::any('law/contribute_yes','LawController@contribute_yes');#通过投稿
+    Route::any('law/contribute_no','LawController@contribute_no');#驳回投稿
 
     Route::any('law/upload','LawController@upload');//上传图片
 

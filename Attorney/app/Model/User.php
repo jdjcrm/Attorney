@@ -13,4 +13,8 @@ class User extends Model
     public function add($insert){
         return $this->insert($insert);
     }
+
+    public function getArray($where){
+        return  $this->whereIn('id', $where)->get()->toArray();
+    }
 }
