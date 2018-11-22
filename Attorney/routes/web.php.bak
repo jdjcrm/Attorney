@@ -66,6 +66,31 @@ Route::any('legal_content','LegalController@legal_content');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * jhy
  */
